@@ -10,23 +10,7 @@ const methodOverride = require("method-override");
 const indexRouter = require("./api/v1/routes/index");
 const session = require("express-session");
 
-// const SequelizeStore = require("connect-session-sequelize")(session.Store);
-// const db = require("./api/v1/models/index");
 
-// const sessionStore = new SequelizeStore({
-//   db: db.sequelize,
-//   expiration: 24 * 60 * 60 * 1000, // Session expiration time in milliseconds (optional)
-// });
-
-// app.use(
-//   session({
-//     secret: "qwertyuiop",
-//     resave: false,
-//     saveUninitialized: false,
-//     store: sessionStore,
-//   })
-// );
-// sessionStore.sync();
 app.set("views", path.join(__dirname, "api/v1/Views"));
 app.use(express.static(__dirname + "/public"));
 
@@ -51,8 +35,9 @@ app.get("/a", (req,res)=>{
     res.render("index");
 });
 
-
-
+app.get("/", (req,res)=>{
+  res.status(200).send("i am working fine");
+})
 app.use("/", indexRouter);
 
 app.listen(port, () => {
